@@ -1,0 +1,23 @@
+/* Fixed header styles */
+header.fixed {
+  max-width: 1536px; /* max-w-8xl equivalent */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px) {
+  header.fixed {
+    width: 100%;
+    max-width: 1536px;
+  }
+}
+
+/* Add padding to body to account for fixed header */
+body {
+  padding-top: 6rem;
+}
+
+/* Adjust main content spacing */
+main {
+  margin-top: 1rem !important;
+}

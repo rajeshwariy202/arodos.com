@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skeleton Loader Demo</title>
+  <link rel="stylesheet" href="./skeleton.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body.loading {
+      overflow: hidden;
+    }
+    
+    #real-content {
+      display: none;
+    }
+    
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Skeleton Loader Template -->
+  <template id="skeleton-template">
+    <div id="full-page-skeleton-overlay" class="text-white">
+      <div class="skeleton-wrapper space-y-6 w-full max-w-screen-xl mx-auto">
+        
+        <!-- Nav bar skeleton -->
+        <div class="flex items-center justify-between py-4 border-b border-white">
+          <div class="skeleton skeleton-circle w-10 h-10"></div>
+          <div class="space-x-4 flex-1 flex justify-end">
+            <div class="skeleton skeleton-line w-24 h-4"></div>
+            <div class="skeleton skeleton-line w-16 h-4"></div>
+          </div>
+        </div>
+
+        <!-- Hero or banner section -->
+        <div class="skeleton-wrapper space-y-6 max-w-screen-xl w-full mx-auto px-6">
+          <!-- Headline Skeleton -->
+          <div class="space-y-2">
+            <div class="skeleton skeleton-line w-2/3 h-8"></div>
+            <div class="skeleton skeleton-line w-1/2 h-6"></div>
+          </div>
+
+          <!-- Subheading / paragraph -->
+          <div class="skeleton skeleton-line w-full h-4"></div>
+          <div class="skeleton skeleton-line w-5/6 h-4"></div>
+          <div class="skeleton skeleton-line w-1/2 h-4"></div>
+
+          <!-- CTA Button -->
+          <div class="skeleton skeleton-rect w-48 h-10 rounded-md"></div>
+
+          <!-- Rating + profile images -->
+          <div class="flex items-center space-x-4">
+            <div class="skeleton skeleton-circle w-10 h-10"></div>
+            <div class="space-y-1">
+              <div class="skeleton skeleton-line w-32 h-4"></div>
+              <div class="skeleton skeleton-line w-24 h-3"></div>
+            </div>
+          </div>
+
+          <!-- Quick stats (delivery rate, apps launched, etc.) -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="skeleton skeleton-line h-4 w-3/4"></div>
+            <div class="skeleton skeleton-line h-4 w-3/4"></div>
+            <div class="skeleton skeleton-line h-4 w-3/4"></div>
+          </div>
+        </div>
+
+        <!-- our mission and vision  -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-screen-xl mx-auto px-6">
+          <!-- Vision Box Skeleton -->
+          <div class="space-y-4">
+            <div class="skeleton skeleton-line w-1/3 h-6"></div> <!-- Heading -->
+            <div class="skeleton skeleton-line w-full h-4"></div>
+            <div class="skeleton skeleton-line w-11/12 h-4"></div>
+            <div class="skeleton skeleton-line w-10/12 h-4"></div>
+            <div class="skeleton skeleton-line w-2/3 h-4"></div>
+          </div>
+
+          <!-- Mission Box Skeleton -->
+          <div class="space-y-4">
+            <div class="skeleton skeleton-line w-1/3 h-6"></div> <!-- Heading -->
+            <div class="skeleton skeleton-line w-full h-4"></div>
+            <div class="skeleton skeleton-line w-11/12 h-4"></div>
+            <div class="skeleton skeleton-line w-10/12 h-4"></div>
+            <div class="skeleton skeleton-line w-2/3 h-4"></div>
+          </div>
+        </div>
+
+        <!-- agile approach  -->
+        <div class="relative w-full max-w-screen-xl mx-auto px-6 py-16">
+          <!-- Background box with blur effect (simulated with gray block) -->
+          <div class="skeleton skeleton-rect w-full h-64 rounded-lg mb-8"></div>
+
+          <!-- Overlapping feature cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 -mt-32">
+            <div class="skeleton skeleton-rect h-40 rounded-lg shadow-md"></div>
+            <div class="skeleton skeleton-rect h-40 rounded-lg shadow-md"></div>
+            <div class="skeleton skeleton-rect h-40 rounded-lg shadow-md"></div>
+          </div>
+        </div>
+
+        <!-- 2-column on mobile, 4-column on desktop -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 px-6 py-12">
+          <div class="skeleton skeleton-rect h-40 w-full rounded-md"></div>
+          <div class="skeleton skeleton-rect h-40 w-full rounded-md"></div>
+          <div class="skeleton skeleton-rect h-40 w-full rounded-md"></div>
+          <div class="skeleton skeleton-rect h-40 w-full rounded-md"></div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Real content that will be shown after loading -->
+  <div id="real-content" class="container mx-auto p-8">
+    <h1 class="text-3xl font-bold mb-6">Content Loaded Successfully!</h1>
+    <p class="mb-4">This content appears after the skeleton loader disappears.</p>
+    <p>The skeleton loader will show for longer if your connection is detected as slow.</p>
+    
+    <div class="mt-8">
+      <button id="test-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Test Skeleton Loader Again
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Simple function to simulate slow connection
+    function simulateSlowConnection() {
+      // Hide real content
+      const content = document.getElementById('real-content');
+      if (content) content.style.display = 'none';
+      
+      // Show skeleton
+      const template = document.getElementById('skeleton-template');
+      if (template) {
+        const clone = template.content.cloneNode(true);
+        document.body.appendChild(clone);
+        document.body.classList.add('loading');
+      }
+      
+      // Hide skeleton after delay
+      setTimeout(() => {
+        const skeleton = document.getElementById('full-page-skeleton-overlay');
+        if (skeleton) {
+          skeleton.classList.add('fade-out');
+          setTimeout(() => {
+            skeleton.remove();
+            document.body.classList.remove('loading');
+          }, 300);
+        }
+        
+        // Show real content
+        if (content) content.style.display = 'block';
+      }, 3000);
+    }
+    
+    // Initial load
+    document.addEventListener('DOMContentLoaded', simulateSlowConnection);
+    
+    // Test button
+    document.getElementById('test-button')?.addEventListener('click', simulateSlowConnection);
+  </script>
+</body>
+</html>

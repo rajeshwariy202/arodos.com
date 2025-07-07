@@ -1,0 +1,30 @@
+.rounded{
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+:root {
+  --arodos-red: #F40202;
+}
+
+body {
+  font-family: 'Mona Sans', sans-serif;
+}
+
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('/fonts/MonaSans-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('/fonts/MonaSans-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+h1, h2, p,span {
+  font-family: 'Mona Sans', sans-serif;
+}
