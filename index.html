@@ -744,7 +744,10 @@
     muted
     loop
     playsinline
-    class="absolute inset-0 w-full h-full object-cover z-0 scale-105 transform"
+    webkit-playsinline
+    preload="auto"
+    class="absolute inset-0 w-full h-full object-cover z-0 scale-105 transform video-bg"
+    poster="./images/hero-poster.jpg"
   >
     <source src="./images/hero section vid.mp4" type="video/mp4" />
     Your browser does not support the video tag.
@@ -1239,7 +1242,7 @@
 
 
   <!-- Full Width Wrapper -->
-<section class="w-full mt-8 px-4 sm:px-6 lg:px-6 xl:px-16">
+<section  class="w-full mt-8 px-4 sm:px-6 lg:px-6 xl:px-16">
   <div class="w-full max-w-[1400px] mx-auto py-14 sm:py-20 md:py-24">
     <div class="bg-white border border-[#EFEFEF] rounded-[12px]
                 px-4 sm:px-8 md:px-8  lg:px-20 xl:px-28
@@ -1305,11 +1308,12 @@
 
 <!-- Get in touch -->
 
-<section class="w-full px-4 sm:px-6 lg:px-12 xl:px-16 mt-20">
+<section id="contact" class="w-full px-4 sm:px-6 lg:px-12 xl:px-16 mt-20 overflow-x-hidden">
+  
   <div class="w-full max-w-[1250px] mx-auto">
     <div class="bg-gradient-to-r from-[#EA1717] to-[#EB195C] text-gray-50 
                 px-4 sm:px-6 md:px-10 lg:px-16 py-10 sm:py-14 lg:py-20 
-                rounded-lg overflow-hidden flex flex-col md:flex-row gap-10 md:gap-0">
+                rounded-lg flex flex-col md:flex-row gap-10 md:gap-0">
 
       <!-- Contact Info Section -->
       <div class="p-4 sm:p-6 md:p-8 lg:p-12 w-full md:w-1/2">
@@ -1419,7 +1423,8 @@
 
 
 <!-- Footer section  -->
-<section class="bg-black text-gray-100 pt-32 sm:pt-40 md:pt-56 pb-20 px-4 sm:px-6 md:px-12 lg:px-20 mt-32 md:mt-48">
+<section class="bg-black text-gray-100 pt-32 sm:pt-40 md:pt-56 pb-20 px-4 sm:px-6 md:px-12 lg:px-20 mt-32 md:mt-48 overflow-x-hidden">
+  
   <div class="w-full max-w-[1300px] mx-auto">
     
     <!-- Top Grid: Navigation | Contact | Socials -->
@@ -1486,7 +1491,36 @@
 
 <!-- Skeleton loader is now handled by skeleton_loader.js -->
 
-
+<style>
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+  
+  .video-bg {
+    object-fit: cover;
+    object-position: center;
+    min-height: 100%;
+    min-width: 100%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background-size: cover;
+  }
+  
+  @media (max-width: 767px) {
+    .video-bg {
+      height: 100% !important;
+      width: auto !important;
+      max-width: none !important;
+    }
+  }
+</style>
 
     <script src="./slow-connection-detector.js"></script>
     <script src="./script.js"></script>

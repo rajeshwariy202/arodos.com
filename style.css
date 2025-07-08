@@ -17,6 +17,14 @@ body {
   padding-top: 6rem;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+
 /* Adjust main content spacing */
 main {
   margin-top: 1rem !important;

@@ -66,5 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (content) {
       content.style.display = 'block';
     }
+    // Make sure skeleton is not shown for fast connections
+    hideSkeleton();
   }
 });
